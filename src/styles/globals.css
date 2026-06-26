@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════
+   OFFICIAL COLOR PALETTE — Frontend Battle Phase 1
+   Arctic Powder  #F1F6F4  |  Mystic Mint    #D9E8E2
+   Forsythia      #FFC801  |  Deep Saffron   #FF9932
+   Nocturnal Exp  #114C5A  |  Oceanic Noir   #172B36
+   FONTS: JetBrains Mono (headers) · Inter (body)
+   ══════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Backgrounds ── */
+  --c-bg:        #172B36;
+  --c-bg-alt:    #0F1F28;
+  --c-surface:   #1E3545;
+  --c-surface-2: #114C5A;
+  --c-surface-3: #1A3D4A;
+
+  /* ── Brand ── */
+  --c-primary:   #FFC801;
+  --c-primary-d: #E6B400;
+  --c-secondary: #FF9932;
+  --c-teal:      #114C5A;
+  --c-teal-l:    #1A6A7D;
+
+  /* ── Text ── */
+  --c-text:      #F1F6F4;
+  --c-text-2:    #D9E8E2;
+  --c-text-3:    #8BAEB8;
+  --c-muted:     #4A7585;
+
+  /* ── Borders ── */
+  --c-border:    rgba(255,200,1,0.18);
+  --c-border-2:  rgba(241,246,244,0.08);
+  --c-border-3:  rgba(17,76,90,0.6);
+
+  /* ── Gradients ── */
+  --g-brand:     linear-gradient(135deg, #FFC801 0%, #FF9932 100%);
+  --g-teal:      linear-gradient(135deg, #114C5A 0%, #172B36 100%);
+  --g-warm:      linear-gradient(135deg, #FF9932 0%, #FFC801 100%);
+  --g-glow:      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,200,1,0.12) 0%, transparent 100%);
+
+  /* ── Official Fonts ── */
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body:    'Inter', sans-serif;
+
+  /* ── Timing (per spec) ── */
+  --t-micro:  175ms;
+  --t-layout: 350ms;
+  --ease-out:   cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-inout: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+h1,h2,h3,h4,h5 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--c-bg); }
+::-webkit-scrollbar-thumb { background: var(--c-primary); border-radius: 2px; }
+::selection { background: rgba(255,200,1,0.3); color: #000; }
+
+/* ── GRADIENT TEXT ── */
+.gradient-text {
+  background: var(--g-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.teal-text { color: var(--c-teal-l); }
+
+/* ── GLASS ── */
+.glass {
+  background: rgba(30,53,69,0.65);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid var(--c-border-2);
+}
+.glass-brand {
+  background: rgba(255,200,1,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,200,1,0.2);
+}
+
+/* ── GLOW ── */
+.glow-brand { box-shadow: 0 0 30px rgba(255,200,1,0.3), 0 0 60px rgba(255,200,1,0.08); }
+.glow-teal  { box-shadow: 0 0 30px rgba(17,76,90,0.5), 0 0 60px rgba(17,76,90,0.15); }
+
+/* ── GRID BG ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,200,1,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,200,1,0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* ── NOISE ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--g-brand); color: #172B36;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.875rem;
+  border: none; border-radius: 10px; cursor: pointer; text-decoration: none;
+  transition: transform var(--t-micro) var(--ease-out), box-shadow var(--t-micro) var(--ease-out);
+  white-space: nowrap;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,200,1,0.4); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent; color: var(--c-text-2);
+  font-family: var(--font-body); font-weight: 600; font-size: 0.875rem;
+  border: 1px solid var(--c-border-2); border-radius: 10px; cursor: pointer; text-decoration: none;
+  transition: color var(--t-micro) var(--ease-out), border-color var(--t-micro) var(--ease-out),
+              background var(--t-micro) var(--ease-out), transform var(--t-micro) var(--ease-out);
+  white-space: nowrap;
+}
+.btn-ghost:hover { color: var(--c-primary); border-color: rgba(255,200,1,0.4); background: rgba(255,200,1,0.06); transform: translateY(-2px); }
+
+/* ── ACCESSIBILITY ── */
+/* Skip link — off-screen until focused, no layout impact (WCAG 2.4.1 Bypass Blocks) */
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.6rem 1.25rem;
+  background: var(--c-primary);
+  color: #172B36;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top var(--t-micro) var(--ease-out);
+}
+.skip-link:focus { top: 1rem; }
+
+/* Consistent focus indicator for every custom interactive control (WCAG 2.4.7 Focus Visible).
+   :focus-visible (not :focus) keeps mouse interactions visually unchanged. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.currency-select:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+}
+
+/* Respect OS-level reduced-motion: collapse every CSS transition/keyframe animation
+   to a single near-instant frame and disable smooth-scroll. GSAP/WAAPI tweens set
+   styles directly and bypass CSS, so those are gated separately via utils/motion.js. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ── LAYOUT ── */
+.section { padding: 6rem 0; position: relative; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+
+.section-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--c-primary); display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+}
+.section-label::before { content:''; display:block; width:18px; height:2px; background:var(--g-brand); border-radius:1px; }
+
+/* ── PRICING TOGGLE ── */
+.toggle-track {
+  display: flex; background: var(--c-surface-2); border: 1px solid var(--c-border-3);
+  border-radius: 100px; padding: 4px; gap: 2px;
+}
+.toggle-opt {
+  padding: 0.4rem 1.2rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; border: none; background: transparent; color: var(--c-text-2);
+  transition: color var(--t-micro) var(--ease-out), background var(--t-micro) var(--ease-out);
+  font-family: var(--font-body);
+}
+.toggle-opt.active { background: var(--g-brand); color: #172B36; }
+
+.currency-select {
+  background: var(--c-surface-2); border: 1px solid var(--c-border-3);
+  color: var(--c-text); border-radius: 8px; padding: 0.45rem 0.9rem;
+  font-family: var(--font-body); font-size: 0.8rem; cursor: pointer; outline: none;
+  transition: border-color var(--t-micro) var(--ease-out);
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%238BAEB8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m19.5 8.25-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.6rem center; background-size: 14px;
+  padding-right: 2.2rem;
+}
+.currency-select:hover { border-color: rgba(255,200,1,0.4); }
+.currency-select option { background: #172B36; }
+
+/* ── PRICING CARDS ── */
+.pricing-card {
+  border-radius: 20px; padding: 2rem; border: 1px solid var(--c-border-3);
+  background: var(--c-surface); position: relative;
+  transition: transform var(--t-layout) var(--ease-inout), border-color var(--t-layout) var(--ease-inout),
+              box-shadow var(--t-layout) var(--ease-inout);
+}
+.pricing-card:hover { transform: translateY(-4px); border-color: rgba(255,200,1,0.3); }
+.pricing-card.featured { border-color: rgba(255,200,1,0.5); background: linear-gradient(160deg, rgba(255,200,1,0.07) 0%, var(--c-surface) 50%); }
+.pricing-card.featured:hover { box-shadow: 0 24px 60px rgba(255,200,1,0.15); }
+.price-amount { font-family: var(--font-display); font-size: 2.8rem; font-weight: 800; line-height:1; color: var(--c-text); }
+
+/* ── BENTO GRID ── */
+.bento-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+@media(max-width:767px){ .bento-grid { display: none; } }
+
+.bento-node {
+  border-radius: 18px; padding: 1.75rem; border: 1px solid var(--c-border-3);
+  background: var(--c-surface); cursor: default;
+  transition: border-color var(--t-micro) var(--ease-out),
+              background var(--t-micro) var(--ease-out),
+              transform var(--t-micro) var(--ease-out),
+              box-shadow var(--t-micro) var(--ease-out);
+}
+.bento-node:hover, .bento-node.active {
+  border-color: rgba(255,200,1,0.45);
+  background: rgba(255,200,1,0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(255,200,1,0.1);
+}
+.bento-node.span-2 { grid-column: span 2; }
+.bento-node.span-row { grid-row: span 2; }
+
+/* ── ACCORDION ── */
+.accordion { display: none; }
+@media(max-width:767px){ .accordion { display: block; } }
+
+.accordion-item { border-bottom: 1px solid var(--c-border-3); }
+.accordion-trigger {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 0; background: none; border: none; color: var(--c-text);
+  font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; text-align: left;
+  transition: color var(--t-micro) var(--ease-out);
+}
+.accordion-trigger.active { color: var(--c-primary); }
+.accordion-chevron { width: 18px; height: 18px; flex-shrink: 0; transition: transform var(--t-layout) var(--ease-inout); }
+.accordion-chevron.open { transform: rotate(180deg); }
+/* Content-agnostic expand/collapse — no fixed height cap, no JS measurement */
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--t-layout) var(--ease-inout);
+}
+.accordion-body.open { grid-template-rows: 1fr; }
+.accordion-content { min-height: 0; overflow: hidden; padding-bottom: 1.25rem; color: var(--c-text-3); font-size: 0.875rem; line-height: 1.7; }
+
+/* ── MARQUEE ── */
+@keyframes marquee-ltr { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.marquee-track { display:flex; gap:2rem; animation: marquee-ltr 30s linear infinite; white-space: nowrap; }
+/* Pause on hover AND keyboard focus (WCAG 2.2.2 Pause, Stop, Hide) — .logo-strip is
+   tabIndex="0" so :focus-within also matches when the strip itself receives focus */
+.logo-strip:hover .marquee-track,
+.logo-strip:focus-within .marquee-track { animation-play-state: paused; }
+.logo-strip:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 2px; }
+.logo-strip { overflow: hidden; position: relative; }
+.logo-strip::before,.logo-strip::after { content:''; position:absolute; top:0; bottom:0; width:100px; z-index:2; pointer-events:none; }
+.logo-strip::before { left:0; background: linear-gradient(90deg, var(--c-bg), transparent); }
+.logo-strip::after  { right:0; background: linear-gradient(-90deg, var(--c-bg), transparent); }
+
+/* ── PULSE RINGS ── */
+@keyframes pulse-ring { 0%{transform:scale(0.92);opacity:0.5} 100%{transform:scale(1.5);opacity:0} }
+.pulse-ring { animation: pulse-ring 3s var(--ease-out) infinite; }
+
+/* ── SVG ICON HELPER ── */
+.icon { display:inline-block; width:1em; height:1em; }
+.icon svg { width:100%; height:100%; }
